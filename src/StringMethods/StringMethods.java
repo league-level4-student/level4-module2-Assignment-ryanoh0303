@@ -1,7 +1,9 @@
 package StringMethods;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Base64;
+import java.util.Collections;
 
 /*
 Visit the JavaDocs for the String class to view everything you can do with a String.  
@@ -55,7 +57,30 @@ public class StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
-		return null;
+		String p1= s1.substring(s1.indexOf(" ")+1, s1.length());
+		String p2= s2.substring(s2.indexOf(" ")+1, s2.length());
+		String p3= s3.substring(s3.indexOf(" ")+1, s3.length());
+		
+		char x1= p1.charAt(0);
+		char x2 = p2.charAt(0);
+		char x3 = p3.charAt(0);
+		ArrayList<Character> arr= new ArrayList<>();
+		arr.add(x1);
+		arr.add(x2);
+		arr.add(x3);
+		Collections.sort(arr);
+		
+		
+		if(x1==arr.get(0)) {
+			return s1;
+		}
+		if(x2==arr.get(0)) {
+			return s2;
+		}
+		else {
+			return s3;
+		}
+		
 	}
 	
 	
@@ -81,11 +106,15 @@ public class StringMethods {
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
 		int sum =0;
+		for(int i=0; i<s.length()-substring.length()+1; i++) {
+			if(s.substring(i,i+substring.length()).equals(substring)) {
+				
 		
-				
-				
+				sum+=1;
+			}
 			
-		return 0;
+		}
+				return sum;
 		
 	}
 
@@ -101,14 +130,31 @@ public class StringMethods {
 
 	// Call Utilities.decrypt to decrypt the cyphertext
 	public static String decrypt(String s, char key) {
-		return null;
+		String x= Utilities.decrypt(s, (byte) key);
+		return x;
 	}
 
 
 	// Return the number of words in String s that end with String substring
 	// You can assume there are no punctuation marks between words
 	public static int wordsEndsWithSubstring(String s, String substring) {
-		return 0;
+		ArrayList<Integer> spacing = new ArrayList<>();
+		int sum =0;
+		int counter =0;
+		for(int i=0; i<s.length(); i++) {
+			if(s.charAt(i)==' ') {
+				counter+=1;
+				spacing.add(i);
+			}
+		}
+		for(int i=0; i<counter; i++) {
+			String x= s.substring(i, s.indexOf(' ',spacing.get(i) ));
+			if(x.endsWith(substring)) {
+				sum+=1;
+			}
+		}
+		
+		return sum;
 	}
 	
 
@@ -116,6 +162,14 @@ public class StringMethods {
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
+		int counter =0;
+		for(int i=0; i<s.length(); i++) {
+			if((""+s.charAt(i)).endsWith(substring)) {
+				counter +=1;
+			}
+		}
+		
+		
 		return 0;
 	}
 
@@ -124,7 +178,26 @@ public class StringMethods {
 	// palindromes are words or phrases are read the same forward as backward.
 	// HINT: ignore/remove all punctuation and spaces in the String
 	public static boolean palindrome(String s) {
-		return true;
+		String temporary ="";
+		s= s.replace(" ", "");
+		s=s.toLowerCase();
+		String character= "abcdefghijklmnopqrstuvwxyz";
+		for(int i =0; i<s.length();i++) {
+			if(character.contains(""+s.charAt(i))) {
+				
+			}
+			else {
+				s=s.replace(""+s.charAt(i),"");
+			}
+		}
+		for(int i=s.length()-1; i>=0; i--) {
+			temporary=temporary+""+s.charAt(i);
+		}
+	
+		if(temporary.equals(s)) {
+			return true;
+		}
+		return false;
 	}
 	
 }
