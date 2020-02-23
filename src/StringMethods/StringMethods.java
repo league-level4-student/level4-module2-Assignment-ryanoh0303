@@ -32,13 +32,22 @@ public class StringMethods {
 
 	// Given Strings s1 and s2, return the longer String
 	public static String longerString(String s1, String s2) {
-		return null;
+		if(s2.length()> s1.length()) {
+			return s2;
+		}
+		else {
+			return s1;
+		}
 	}
 
 	
 	// if String s contains the word "underscores", change all of the spaces to underscores
 	public static String formatSpaces(String s) {
-		return null;
+		
+		if(s.contains("underscores")){
+			s=s.replace(" ","_");
+		}
+		return s;
 	}
 
 	
@@ -52,18 +61,42 @@ public class StringMethods {
 	
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
-		return 0;
+		int counter = 0;
+		String character="abcdefghijklmnopqrstuvwxyz";
+		for(int i=0; i<s.length(); i++) {
+			if(character.contains(""+s.charAt(i))) {
+				
+			}
+			else {
+				counter+= Integer.parseInt(""+s.charAt(i));
+			}
+			
+		}
+		
+		
+		return counter;
 	}
 	
 	
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
+		int sum =0;
+		
+				
+				
+			
 		return 0;
+		
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
-		return null;
+		String x =Utilities.encrypt(s.getBytes(), (byte) key);
+		
+		
+		
+		
+		return x;
 	}
 
 	// Call Utilities.decrypt to decrypt the cyphertext
