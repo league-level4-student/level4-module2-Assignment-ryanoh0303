@@ -57,10 +57,31 @@ public class StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
-		String p1= s1.substring(s1.indexOf(" ")+1, s1.length());
-		String p2= s2.substring(s2.indexOf(" ")+1, s2.length());
-		String p3= s3.substring(s3.indexOf(" ")+1, s3.length());
-		
+		String temp= s1.replace(" ", "");
+		String temp2=s2.replace(" ", "");
+		String temp3= s3.replace(" ", "");
+		String p1 = "";
+		String p2= "";
+		String p3 = "";
+		s1 = s1.trim();
+		s2= s2.trim();
+		s3=s3.trim();
+		for(int i=0; i<temp.length(); i++) {
+			if(Character.isUpperCase(temp.charAt(i))) {
+				 p1 = ""+temp.charAt(i);
+			}
+		}
+		for(int i=0; i<temp2.length(); i++) {
+			if(Character.isUpperCase(temp2.charAt(i))) {
+				 p2 = ""+temp2.charAt(i);
+			}
+		}
+		for(int i=0; i<temp3.length(); i++) {
+			if(Character.isUpperCase(temp3.charAt(i))) {
+				 p3 = ""+temp3.charAt(i);
+			}
+		}
+
 		char x1= p1.charAt(0);
 		char x2 = p2.charAt(0);
 		char x3 = p3.charAt(0);
@@ -162,15 +183,13 @@ public class StringMethods {
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
-		int counter =0;
-		for(int i=0; i<s.length(); i++) {
-			if((""+s.charAt(i)).endsWith(substring)) {
-				counter +=1;
-			}
-		}
+		
+		int counter = s.indexOf(substring);
+		int counter2 = s.lastIndexOf(substring);
+		return counter2-counter-substring.length();
 		
 		
-		return 0;
+		
 	}
 
 
